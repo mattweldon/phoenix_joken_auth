@@ -11,6 +11,9 @@ defmodule PhoenixJokenAuth.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Joken.Plug, on_verifying: &PhoenixJokenAuth.Router.verify_call/1
+    plug :match
+    plug :dispatch
   end
 
   scope "/", PhoenixJokenAuth do
@@ -20,7 +23,14 @@ defmodule PhoenixJokenAuth.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PhoenixJokenAuth do
-  #   pipe_through :api
-  # end
+  scope "/api", PhoenixJokenAuth do
+    pipe_through :api
+
+    get "/", PageController, :index
+  end
+
+  def verify_call(token) do
+    IO.inspect "expecting this to be called, but get a compilation error instead..."
+    token
+  end
 end
