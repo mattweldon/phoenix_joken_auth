@@ -15,8 +15,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :phoenix_joken_auth, PhoenixJokenAuth.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "mattweldon",
+  password: "",
   database: "phoenix_joken_auth_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
